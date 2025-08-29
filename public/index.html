@@ -1,0 +1,82 @@
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Busca de Imagens</title>
+  <style>
+    body { 
+      font-family: sans-serif; 
+      text-align: center; 
+      padding: 20px; 
+    }
+    input { 
+      padding: 10px;
+      width: 300px;
+    }
+    button { 
+      padding: 10px; 
+    }
+    .galeria { 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 10px; 
+      justify-content: center; 
+      margin-top: 20px; 
+    }
+    .img-box { 
+      position: relative; 
+    }
+    .img-box img { 
+      width: 200px; 
+      border-radius: 5px; 
+    }
+    .img-box a { 
+      position: absolute; 
+      bottom: 5px; 
+      right: 5px;
+      background: white; 
+      padding: 5px; 
+      font-size: 12px; 
+      border-radius: 3px; 
+      text-decoration: none; 
+    }
+  </style>
+</head>
+<body>
+  <h1>Buscar Imagens</h1>
+  <input type="text" id="busca" placeholder="Ex: gatos, flores...">
+  <button onclick="pesquisar()">Pesquisar</button>
+
+  <div class="galeria" id="galeria"></div>
+
+  <script>
+    async function pesquisar() {
+      const query = document.getElementById('busca').value.trim();
+      if (!query) return;
+
+      // Exemplo usando a API do Unsplash (precisas de uma Access Key gratuita)
+      const url = `https://api.unsplash.com/search/photos?query=${query}&per_page=12&client_id=LJ2bmJ3GbqClJiYXf8S9WFmnIbD4Nlt_3uwgV1Mn2Ck`;
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        const imagens = data.results;
+
+        const galeria = document.getElementById('galeria');
+        galeria.innerHTML = "";
+
+        imagens.forEach(img => {
+          const div = document.createElement('div');
+          div.className = 'img-box';
+          div.innerHTML = `
+            <img src="${img.urls.small}" alt="${img.alt_description || 'imagem'}">
+            <a href="${img.links.download}" download target="_blank">Download</a>
+          `;
+          galeria.appendChild(div);
+        });
+      } catch (err) {
+        console.error("Erro ao buscar imagens:", err);
+      }
+    }
+  </script>
+</body>
+</html>
