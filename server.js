@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-const PORT = 3003;
+const PORT = process.env.PORT || 3003;
 
 // tua chave do Pixabay
 const PIXABAY_API_KEY = '52036501-4b182030a33836db1d49ce934';
