@@ -209,7 +209,7 @@
           div.className = 'img-box';
           div.innerHTML = `
             <img src="${img.webformatURL}" alt="${img.tags}">
-            <a href="${img.largeImageURL}" download target="_blank">⬇️ Download</a>
+            <a href="${img.largeImageURL}" download="img.jpg" target="_blank">⬇️ Download</a>
           `;
           galeria.appendChild(div);
         });
