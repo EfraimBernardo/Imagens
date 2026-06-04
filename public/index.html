@@ -8,14 +8,14 @@
 
     body { 
       font-family: 'Segoe UI', sans-serif; 
-      background: #f5f7fa;
+      background: #1e293b;
       color: #333;
       text-align: center; 
       padding: 20px; 
     }
 
     header {
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      background: #0f172a;
       padding: 20px;
       border-radius: 10px;
       color: white;
@@ -48,14 +48,14 @@
       border-radius: 8px;
       font-size: 15px;
       cursor: pointer;
-      background: #00c6ff;
+      background: #1e293b;
       color: white;
       font-weight: bold;
       transition: 0.3s;
     }
 
     button:hover {
-      background: #0072ff;
+      background: #4972ff;
     }
 
     .galeria { 
@@ -67,7 +67,7 @@
     }
 
     .img-box { 
-      background: white;
+      background: #0f172a;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0px 4px 8px rgba(0,0,0,0.15);
@@ -89,7 +89,7 @@
     .img-box a { 
       display: block;
       text-align: center;
-      background: #4facfe;
+      background: #1e293b;
       color: white; 
       padding: 8px; 
       font-size: 14px; 
@@ -99,13 +99,13 @@
     }
 
     .img-box a:hover {
-      background: #0072ff;
+      background: #4972ff;
     }
 
     footer {
       margin-top: 30px;
       font-size: 14px;
-      color: #666;
+      color: #888;
     }
   </style>
 </head>
@@ -209,13 +209,14 @@
           div.className = 'img-box';
           div.innerHTML = `
             <img src="${img.webformatURL}" alt="${img.tags}">
-            <a href="${img.largeImageURL}" download="img.jpg" target="_blank">⬇️ Download</a>
+            <a href="${img.webformatURL}" download="${img.webformatURL}" target="_blank">⬇️ Download</a>
           `;
           galeria.appendChild(div);
         });
 
       } catch (err) {
         galeria.innerHTML = "<p>❌ Erro ao carregar sugestões.</p>";
+        galeria.style.color = "white";
       }
     }
 
